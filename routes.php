@@ -3,7 +3,6 @@
 use Sources\Application\Routes\Route;
 
 Route::setRoute('home',['returnView','home']);
-Route::setRoute('contact',['returnView','contact']);
-Route::setRoute('users',['importController','Users']);
+Route::setRoute('usuarios',['importController','Users','pages'=>['adicionar'=>'add','empty'=>'listUsers','int'=>'listUsers']]);
 
 Route::getRoute();
