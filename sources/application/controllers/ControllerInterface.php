@@ -2,10 +2,10 @@
 
 namespace Sources\Application\Controllers;
 
-interface Controller{
+interface ControllerInterface{
     
     static function execute($parameters);
-
+    
 }
 
 ?>

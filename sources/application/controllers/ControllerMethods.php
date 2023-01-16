@@ -23,4 +23,5 @@ trait ControllerMethods{
         http_response_code(404);
     }
 
+
 }

@@ -10,7 +10,7 @@ namespace Sources\Classes\Database;
 abstract class Connection
 {	
  
- private static $Dns 	= "mysql:host=localhost;dbname=teste";
+ private static $Dns 	= "mysql:host=localhost;dbname=microframework";
  private static $User 	= "root";
  private static $Pass 	= "";
  protected static $Conn   = null;
