@@ -21,7 +21,7 @@ class View{
         self::$Content = self::{(is_array($Value) ?  'replaceArray' : 'replaceSingleValue')}(self::$Content,$Key,$Value);
       }
       
-      self::$Content = self::preventEmptyValues(self::$Content);
+      self::removeEmptyValues();
       echo self::$Content;
 
     }
@@ -110,17 +110,14 @@ class View{
 
     }
 
-    private static function preventEmptyValues($Content){
+    private static function removeEmptyValues(){
 
-        $Count = substr_count($Content,'{e}{{'); 
+        $Count = substr_count(self::$Content,'{{'); 
         
         for($i = 0; $i < $Count ; $i++){
-          $key = self::getContent($Content,'{e}{{','}}{e}');
-          $Content   = str_replace('{e}{{'.$key.'}}{e}','',$Content);
+          $key = self::getContent(self::$Content,'{{','}}');
+          self::$Content   = str_replace('{{'.$key.'}}','',self::$Content);
         }
-    
-        $Content = str_replace('{e}','',$Content);
-        return $Content;
 
       }
 
