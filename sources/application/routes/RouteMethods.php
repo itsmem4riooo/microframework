@@ -5,7 +5,7 @@ namespace Sources\Application\Routes;
 trait RouteMethods{
 
     protected static function importController($controller,$parameters){
-        if(class_exists($controller = "\\Sources\\Application\\Controllers\\$controller")){
+        if(class_exists($controller = "\\Sources\\Application\\Controllers\\".ucfirst(CONTROLLER_DIR)."\\$controller")){
            $controller::execute($parameters);
         }
     }

@@ -52,7 +52,7 @@ class Crud extends Connection{
         self::$Syntax .= ' LIMIT :limit';
         $Values[':limit'] = (int)$Options['Limit'];
        }
-
+     
        if(!empty($Options['Offset'])){
         self::$Syntax .= ' OFFSET :offset';
         $Values[':offset'] = (int)$Options['Offset'];
@@ -96,7 +96,7 @@ class Crud extends Connection{
 
     }
 
-    static function Query($Syntax,$Values){
+    static function Query($Syntax,array $Values = []){
 
       foreach( array_keys($Values) as $key){
         $Values[":$key"] = $Values[$key];
@@ -132,11 +132,7 @@ class Crud extends Connection{
             if(!empty($Values)){
 
                 foreach($Values as $key => $value):
-                  if($key == ':limit' || $key == ':offset'){
-                    $Query->bindValue($key , $value , \PDO::PARAM_INT);
-                  }else{
-                    $Query->bindValue($key , $value , ((string)$value ? \PDO::PARAM_STR : \PDO::PARAM_INT));
-                  }
+                  $Query->bindValue($key , $value , (is_numeric($value) ? \PDO::PARAM_INT : \PDO::PARAM_STR));
                 endforeach;
 
             }

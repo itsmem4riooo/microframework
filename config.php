@@ -7,6 +7,7 @@ Sources\Classes\Database\Crud::ConnectDb();
 
 
 define('THEME','exemple');
+define('CONTROLLER_DIR','exemple');
 define('APP_DIR','./sources/application');
 
 ?>
