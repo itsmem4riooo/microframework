@@ -8,7 +8,7 @@ class View{
     private static $Content = null;
 
     static function setView(string $Page,array $Data){
-        self::$Data = $Data;
+        self::setData($Data);
         self::$Content = self::fileGetContent($Page); 
     }
 
@@ -59,19 +59,17 @@ class View{
         return substr($Content,$cutX,$cutY-$cutX);
     }
 
-    static function setContent($Content,$Data,$Parameters = null,$replacedContent = null){
+    static function setContent($Content,$Data,$Parameters = null,$replacedContent = []){
         
         $Data = (!isset($Data[0]) ? [$Data] : $Data);
         
-
         for($i = 0;$i < count($Data);$i++){
-          foreach($Data[$i] as $search => $replace){
-           $Filter = self::filterData($Parameters,[$search,$replace],
-           (!empty($replacedContent[$i]) ? $replacedContent[$i] : $Content));
+          foreach($Data[$i] as $search => $replace){ 
+           $Filter = self::filterData(($Parameters ? $Parameters :[]),[$search,$replace],
+           (!empty($replacedContent[$i]) ? $replacedContent[$i] : $Content)); 
            $replacedContent[$i] = str_replace('#'.$search.'#',$Filter['Value'],$Filter['Content']);
           } 
         }
-
         return implode('',$replacedContent);
     }
 
@@ -80,7 +78,7 @@ class View{
     }
 
     private static function filterData($Parameters,$Data,$Content){
-
+      
         foreach($Parameters as $parameter => $values){
 
            switch($parameter){
@@ -119,6 +117,12 @@ class View{
           self::$Content   = str_replace('{{'.$key.'}}','',self::$Content);
         }
 
+    }
+
+    static function setData($Data){
+      foreach($Data as $key => $val){
+        self::$Data[$key] = $val;
       }
+    }
 
 }
