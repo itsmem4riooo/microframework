@@ -9,11 +9,11 @@ class Users{
     
     use \Sources\Classes\Mvc\Controller;
 
-    static function listUsers($parameters){
+    static function index($parameters){
 
-       Pager::List("users",['max_links'=>1,'Options'=>['Limit'=>2],'link'=>BASE.'usuarios/','page'=>@$parameters[0]]);
+       Pager::List("users",['max_links'=>1,'Options'=>['Limit'=>2],'link'=>BASE.'/users/','page'=>@$parameters[0]]);
        View::setView('users/ListUsers',['users'=>Pager::getResult()]);
-       
+
     }
 
     static function add(){

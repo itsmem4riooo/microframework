@@ -28,7 +28,7 @@ private static function formatUri(){
 private static function checkRoute(){
  
     if(!array_key_exists(self::$currentRoute, self::$Routes)){
-      header('location: '.BASE.'error');
+      header('location: '.BASE.'/error');
     }   
 }
 
