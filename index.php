@@ -3,6 +3,6 @@
 require 'config.php';
 require 'routes.php';
 
-Sources\Application\Views\View::Render();
+Sources\Classes\Mvc\View::Render();
 
 ?>

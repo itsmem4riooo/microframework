@@ -2,13 +2,12 @@
 
 namespace Sources\Application\Controllers\Exemple;
 
-use Sources\Application\Views\View;
+use Sources\Classes\Mvc\View;
 use Sources\Classes\Database\Pager;
-use Sources\Application\Controllers\ControllerMethods;
 
 class Users{
     
-    use ControllerMethods;
+    use \Sources\Classes\Mvc\Controller;
 
     static function listUsers($parameters){
 

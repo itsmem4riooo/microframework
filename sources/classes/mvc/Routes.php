@@ -1,10 +1,10 @@
 <?php
 
-namespace Sources\Application\Routes;
+namespace Sources\Classes\Mvc;
 
-class Route{
+class Routes{
 
-use RouteMethods;
+use RoutesMethods;
 use \Sources\Classes\Validations\Requests;
 
 private static $Routes;
@@ -28,8 +28,7 @@ private static function formatUri(){
 private static function checkRoute(){
  
     if(!array_key_exists(self::$currentRoute, self::$Routes)){
-      http_response_code(404);
-      return false;
+      header('location: '.BASE.'error');
     }   
 }
 

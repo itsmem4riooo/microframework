@@ -2,7 +2,7 @@
 
 namespace Sources\Classes\Database;
 
-use Sources\Application\Views\View;
+use Sources\Classes\Mvc\View;
 use Sources\Classes\Validations\Requests;
 
 class Pager extends Crud{

@@ -1,9 +1,9 @@
 <?php
 
-use Sources\Application\Routes\Route;
+use Sources\Classes\Mvc\Routes;
 
-Route::setRoute('home',['returnView','home']);
-Route::setRoute('usuarios',['importController','Users','pages'=>['adicionar'=>'add','empty'=>'listUsers','int'=>'listUsers']]);
-Route::setRoute('error',['returnView','Error']);
+Routes::setRoute('home',['returnView','Home','user'=>'Gabriel']);
+Routes::setRoute('usuarios',['importController','Users','pages'=>['adicionar'=>'add','empty'=>'listUsers','int'=>'listUsers']]);
+Routes::setRoute('error',['returnView','Error']);
 
-Route::getRoute();
+Routes::getRoute();

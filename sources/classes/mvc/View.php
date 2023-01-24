@@ -1,21 +1,23 @@
 <?php
 
-namespace Sources\Application\Views;
+namespace Sources\Classes\Mvc;
 
 class View{
 
-    private static $Data = [];
+    private static $Data = [
+      'base' => BASE,
+      'b_theme'  => BASE.'sources/application/views/themes/'.THEME.'/'
+    ];
     private static $Content = null;
 
     static function setView(string $Page,array $Data){
         self::setData($Data);
-        self::$Content = self::fileGetContent($Page); 
+        self::$Content .= self::fileGetContent($Page); 
     }
 
-    static function Render(){
+    static function Render($layout = 'mainLayout'){
 
-      self::$Content  = self::fileGetContent('Header','layout_contents').self::$Content;
-      self::$Content .= self::fileGetContent('Footer','layout_contents');
+      self::$Content  = str_replace('@content', self::$Content ,self::fileGetContent('mainLayout','layout_contents'));
         
       foreach(self::$Data as $Key => $Value){
         self::$Content = self::{(is_array($Value) ?  'replaceArray' : 'replaceSingleValue')}(self::$Content,$Key,$Value);
@@ -74,7 +76,7 @@ class View{
     }
 
     static function fileGetContent($File,$Dir = 'pages_contents',$Extension = '.view.html'){
-       return (file_exists($Content = APP_DIR.'/views/templates/'.THEME.'/'.$Dir.'/'.$File.$Extension) ?  file_get_contents($Content) : null); 
+       return (file_exists($Content = APP_DIR.'/views/themes/'.THEME.'/'.$Dir.'/'.$File.$Extension) ?  file_get_contents($Content) : null); 
     }
 
     private static function filterData($Parameters,$Data,$Content){
