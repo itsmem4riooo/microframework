@@ -4,7 +4,7 @@
  * @author Gabriel Teixeira
  */
 
-namespace Sources\Classes\Validations;
+namespace Sources\Core\Validations;
 
 trait Requests{
 

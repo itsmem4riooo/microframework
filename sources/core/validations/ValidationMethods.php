@@ -1,6 +1,6 @@
 <?php
 
-namespace Sources\Classes\Validations;
+namespace Sources\Core\Validations;
 
 trait ValidationMethods{
    

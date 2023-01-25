@@ -1,6 +1,6 @@
 <?php
 
-namespace Sources\Classes\Mvc;
+namespace Sources\Core\Mvc;
 
 trait Controller{
 

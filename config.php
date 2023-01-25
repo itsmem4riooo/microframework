@@ -3,7 +3,7 @@
 
 require 'vendor/autoload.php';
 
-Sources\Classes\Database\Crud::ConnectDb();
+Sources\Core\Database\Crud::ConnectDb();
 
 define('THEME','exemple');
 define('CONTROLLER_DIR','exemple');

@@ -1,6 +1,6 @@
 <?php 
 
-namespace Sources\Classes\Helpers;
+namespace Sources\Core\Helpers;
 
 /*
 * Class responsible for uploading images files

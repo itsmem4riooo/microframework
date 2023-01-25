@@ -1,6 +1,6 @@
 <?php
 
-use Sources\Classes\Mvc\Routes;
+use Sources\Core\Mvc\Routes;
 
 Routes::setRoute('home',['returnView','Home','user'=>'Gabriel']);
 Routes::setRoute('users',['importController','Users','pages'=>['int'=>'index']]);

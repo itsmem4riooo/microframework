@@ -5,7 +5,7 @@
  * @author Gabriel Teixeira
  */
 
-namespace Sources\Classes\Validations;
+namespace Sources\Core\Validations;
 
 class Validate{
 

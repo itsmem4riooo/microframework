@@ -5,7 +5,7 @@
  * @author Gabriel Texeira
  */
 
-namespace Sources\Classes\Database;
+namespace Sources\Core\Database;
 
 abstract class Connection
 {	

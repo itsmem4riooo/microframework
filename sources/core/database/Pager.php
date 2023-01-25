@@ -1,9 +1,9 @@
 <?php
 
-namespace Sources\Classes\Database;
+namespace Sources\Core\Database;
 
-use Sources\Classes\Mvc\View;
-use Sources\Classes\Validations\Requests;
+use Sources\Core\Mvc\View;
+use Sources\Core\Validations\Requests;
 
 class Pager extends Crud{
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace Sources\Classes\Mvc;
+namespace Sources\Core\Mvc;
 
 class View{
 
     private static $Data = [
       'base' => BASE,
-      'b_theme'  => BASE.'sources/application/views/themes/'.THEME.'/'
+      'b_theme'  => BASE.'/sources/application/views/themes/'.THEME.'/'
     ];
     private static $Content = null;
 
@@ -95,9 +95,13 @@ class View{
 
              case 'include':
 
-                if(((string)$Data[0] == (string)$values['key']) && in_array($Data[1],$values['value'])){
-                    $offset = strpos($Content,$values['offset'])+strlen($values['offset']);
-                    $Content = substr_replace($Content, ' '.$values['tag'] , $offset , 0 ); 
+                $values = (!empty($values[0]) ? $values : [$values]);
+
+                foreach($values as $value){
+                  if(((string)$Data[0] == (string)$value['key']) && in_array($Data[1],$value['value'])){
+                      $offset = strpos($Content,$value['offset'])+strlen($value['offset']);
+                      $Content = substr_replace($Content, ' '.$value['tag'] , $offset , 0 ); 
+                  }
                 }
 
              break;   

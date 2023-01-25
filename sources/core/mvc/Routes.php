@@ -1,11 +1,11 @@
 <?php
 
-namespace Sources\Classes\Mvc;
+namespace Sources\Core\Mvc;
 
 class Routes{
 
 use RoutesMethods;
-use \Sources\Classes\Validations\Requests;
+use \Sources\Core\Validations\Requests;
 
 private static $Routes;
 private static $currentRoute;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Sources\Classes\Database;
+namespace Sources\Core\Database;
 
 class Crud extends Connection{
 
