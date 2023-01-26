@@ -2,6 +2,8 @@
 
 namespace Sources\Core\Validations;
 
+use Sources\Core\Database\Crud;
+
 trait ValidationMethods{
    
     protected static $Message;
@@ -68,6 +70,31 @@ trait ValidationMethods{
         self::$Message = "Value invalid on $Parameters[title]";
         return false;
       }
+    }
+
+    static function exist($Parameters){
+
+      Crud::Read($Parameters['data'][0],[$Parameters['data'][1] => $Parameters['value']]);
+
+      if(Crud::getRowCount() < 1){
+        return false;
+      }
+
+      if(in_array('save',$Parameters['data'])){
+        self::$Values[$Parameters['key']] = Crud::getResult();
+      }
+
+    }
+
+    static function dbcheck($Parameters){
+
+      Crud::Read($Parameters['data'][0],[$Parameters['data'][1] => $Parameters['value']]);
+
+      if(Crud::getRowCount() > 0){
+        self::$Message = "$Parameters[title] already exists!";
+        return (!empty($Parameters['data']['exception']) && $Parameters['value'] == $Parameters['data']['exception'] ? true :  false);
+      }
+
     }
 
 }
