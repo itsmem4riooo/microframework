@@ -76,7 +76,7 @@ class Pager extends Crud{
         }
       }
       
-      self::$Data['pagination']['currentPage'][] = ['page' => (self::$Page > 1 ? self::$Page : null)];
+      self::$Data['pagination']['currentPage'][] = ['page' => self::$Page];
 
       if(self::$Data['num_pages'] > self::$Page){
         for($i = 0; $i < self::$Data['num_pages']+1 ; $i++){

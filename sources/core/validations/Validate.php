@@ -12,35 +12,35 @@ class Validate{
   use ValidationMethods;
 
   //VALUES
-  private $Values;
+  private static $Values;
 
   //PARAMETERS VALIDATION
-  private $Params;
+  private static $Params;
   
   //ERROR
-  private $Error;
+  private static $Error;
 
-  function ValidateValues(array $Values = null , array $Params = null){
+  static function ValidateValues(array $Values = null , array $Params = null){
       
-    $this->Values = $Values;
-    $this->Params = $Params;
-    $this->Error  = false;
+    self::$Values = $Values;
+    self::$Params = $Params;
+    self::$Error  = false;
      
-    if($this->checkTrigger()){
-      return $this->checkValues();
+    if(self::checkTrigger()){
+      return self::checkValues();
     }  
 
   }
 
-  private function checkValues(){
+  private static function checkValues(){
 
-    foreach(array_keys($this->Values) as $Field){
-      if(!$this->checkParams($Field)){
+    foreach(array_keys(self::$Values) as $Field){
+      if(!self::checkParams($Field)){
         return false;
       }
     }
 
-    if($this->Error){
+    if(self::$Error){
       return false;
     }
 
@@ -48,26 +48,26 @@ class Validate{
 
   }
   
-  private function checkTrigger(){
-    return (!empty($this->Values) ? true : false);
+  private static function checkTrigger(){
+    return (!empty(self::$Values) ? true : false);
   }
 
   //CHECK PARAMETERS OF EACH FIELD
-  private function checkParams($Field){
+  private static function checkParams($Field){
 
-    if(!isset($this->Params[$Field])){
-      $this->Error = 'Invalid field: '.$Field;
+    if(!isset(self::$Params[$Field])){
+      self::$Error = 'Invalid field: '.$Field;
       return false;
     }
 
-    if(!$this->validateConditions($this->Params[$Field][0],$Field)){
+    if(!self::validateConditions(self::$Params[$Field][0],$Field)){
       return false;
     }
     
     return true;
   }
   //VALIDATE CONDITIONS
-  private function validateConditions($conditions,$Field){
+  private static function validateConditions($conditions,$Field){
     
     if(is_array($conditions)){
 
@@ -81,13 +81,13 @@ class Validate{
           $Data = null;
         }
 
-        if(!method_exists($this,$condition)){
-          $this->Error = 'Internal error: method '.$condition.' not exists!';
+        if(!method_exists(self::class,$condition)){
+          self::$Error = 'Internal error: method '.$condition.' not exists!';
           return false;
         }
       
-        if($this->{$condition}($this->Values[$Field],$this->Params[$Field]['title'],$Data) === false){
-          $this->Error = $this->Message;
+        if(self::{$condition}(['value'=> self::$Values[$Field],'title'=> self::$Params[$Field]['title'],'data'=>$Data,'key'=>$Field]) === false){
+          self::$Error = self::$Message;
           return false;
         }
         
@@ -97,12 +97,12 @@ class Validate{
     return true;
   }
 
-  function getError(){
-    return $this->Error;
+  static function getError(){
+    return self::$Error;
   }
 
-  function getValues(){
-    return $this->Values;   
+  static function getValues(){
+    return self::$Values;   
   }
   
 

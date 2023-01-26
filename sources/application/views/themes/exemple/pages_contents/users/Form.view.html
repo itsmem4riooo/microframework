@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="d-flex align-items-center flex-column justify-content-center" style="height: 100vh;">
+
+    <form method="post" action="" class="w-50" enctype="multipart/form-data">    
+    {{validate_message-<div class="alert alert-#class#">#msg#</div>}}
+           
+  <!-- 2 column grid layout with text inputs for the first and last names -->
+  <div class="row mb-4">
+    <div class="col">
+      <div class="form-outline">
+        <input type="text" name="first_name" value="{{first_name}}" class="form-control" placeholder="First Name"/>
+
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-outline">
+        <input type="text" name="last_name" value="{{last_name}}" class="form-control"  placeholder="Last Name"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- Text input -->
+  <div class="row">
+  <div class="form-outline mb-4 col">
+    <input type="text" name="login" class="form-control" value="{{login}}" placeholder="E-mail"/>
+  </div>
+  </div>
+
+    <!-- Text input -->
+    <div class="row">
+  <div class="form-outline mb-4 col">
+    <input type="password" name="pass" class="form-control" placeholder="password"/>
+  </div>
+
+  <!-- Number input -->
+  <div class="form-outline mb-4 col">
+    <input type="password" name="confirm_pass" class="form-control" placeholder="confirm password" />
+  </div>
+  </div>
+  <div class="form-outline mb-4 col">
+    <input type="file" name="thumb" class="form-control" placeholder="thumbnail"/>
+  </div>
+  <!-- Submit button -->
+  <div class="text-end">
+  <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+  </div>
+</form>
+</div></div>

@@ -10,13 +10,13 @@ class View{
     ];
     private static $Content = null;
 
-    static function setView(string $Page,array $Data){
-        self::setData($Data);
+    static function setView(string $Page, $Data = []){
+        self::setData((!empty($Data) && is_array($Data) ? $Data : []));
         self::$Content .= self::fileGetContent($Page); 
     }
 
     static function Render($layout = 'mainLayout'){
-
+      
       self::$Content  = str_replace('@content', self::$Content ,self::fileGetContent('mainLayout','layout_contents'));
         
       foreach(self::$Data as $Key => $Value){

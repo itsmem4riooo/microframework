@@ -4,55 +4,63 @@ namespace Sources\Core\Validations;
 
 trait ValidationMethods{
    
-    protected $Message;
+    protected static $Message;
 
-    public function checkEmail($Value){
-      if(!preg_match('/^[a-z0-9\.\_\-]+(\@){1}[a-z]{3,}+(\.){1}[a-z]{3,4}+[\.a-z]{0}/', $Value)){
-        $this->Message = "Invalid email";
+    static function checkEmail($Parameters){
+      if(!preg_match('/^[a-z0-9\.\_\-]+(\@){1}[a-z]{3,}+(\.){1}[a-z]{3,4}+[\.a-z]{0}/', $Parameters['value'])){
+        self::$Message = "Invalid email";
         return false;
       }
     }
 
-    public function max_length($Value,$Title,$Data){
-      if(($length = strlen($Value)) > $Data){
-        $this->Message = "Maximum number of characters reached on $Title, allowed: $Data, string length: $length";
+    static function max_length($Parameters){
+      if(($length = strlen($Parameters['value'])) > $Parameters['data']){
+        self::$Message = "Maximum number of characters reached on $Parameters[title], allowed: $Parameters[data], string length: $length";
         return false;
       }
     }
 
-    public function min_length($Value,$Title,$Data){
-      if(($length = strlen($Value)) < $Data){
-        $this->Message = "Minimum number of characters not reached on $Title, required: $Data, string length: $length";
+    static function min_length($Parameters){
+      if(($length = strlen($Parameters['value'])) < $Parameters['data']){
+        self::$Message = "Minimum number of characters not reached on $Parameters[title], required: $Parameters[data], string length: $length";
         return false;
       }
     }
 
-    public function required($Value,$Title){
-      if(empty($Value)){
-        $this->Message = "Please fill in the field $Title";
+    static function required($Parameters){
+      if(empty($Parameters['value'])){
+        self::$Message = "Please fill in the field $Parameters[title]";
         return false;
       }
     }
 
-    public function regex($Value,$Title,$Data){
-      if(!preg_match($Data, $Value)){
-        $this->Message = "Invalid $Title";
+    static function regex($Parameters){
+      if(!preg_match($Parameters['data'], $Parameters['value'])){
+        self::$Message = "Invalid $Parameters[title]";
         return false;
       }
     }
 
-    public function confirmPassword($Value,$Title,$Data){
-      if($Value !== $this->Values[$Data]){
-        $this->Message = "Password don't match";
+    static function confirmPassword($Parameters){
+      if($Parameters['value'] !== self::$Values[$Parameters['data']]){
+        self::$Message = "Password don't match";
         return false;
       }
     }
 
-    public function checkHtmlTags($Value,$Title){
-      if(strip_tags($Value) !== $Value){
-        $this->Message = "Invalid characters tags on $Title";
+    static function checkHtmlTags($Parameters){
+      if(strip_tags($Parameters['value']) !== $Parameters['value']){
+        self::$Message = "Invalid characters tags on $Parameters[title]";
         return false;
       }
+    }
+
+    static function format_password($Parameters){
+      self::$Values[$Parameters['key']] = password_hash(self::$Values[$Parameters['key']],PASSWORD_DEFAULT);
+    }
+
+    static function delete_field($Parameters){
+      unset(self::$Values[$Parameters['key']]);
     }
 
 }
