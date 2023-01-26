@@ -17,17 +17,21 @@ class UsersModel{
         'first_name'    => [ 'title'=>'First Name', ['required','max_length'=>25,'checkHtmlTags'] ],
         'last_name'     => [ 'title'=>'Last Name', ['max_length'=>25,'checkHtmlTags'] ],
         'nickname'      => [ 'title'=>'Nickname', ['required']],
-        'login'         => [ 'title'=>'Email', ['required','checkEmail']],
+        'active'        => [ 'title'=>'Status',['required','accept'=>['0','1']]],
+        'login'         => [ 'title'=>'Login', ['required','regex'=>'/^[A-Za-z0-9]*$/',]],
+        'email'         => [ 'title'=>'Email', ['required','checkEmail']],
         'pass'          => [ 'title'=>'Password', ['required','confirmPassword'=>'confirm_pass','min_length'=>10,'format_password']],
         'confirm_pass'  => [ 'title'=>'Confirm Password', ['required','min_length'=>10,'delete_field']]
     ];
 
     static function addUser(){
-
+        
         if(self::ValidateValues()){
             Crud::Create('users',self::$Values);
             self::$Data['validate_message'] = ['class' => 'success','msg'=>'User registered successfully!'];
         }
+
+        self::getStatus([self::Post('active')]);
 
     }
 
@@ -70,6 +74,15 @@ class UsersModel{
       }
       return true;
 
+    }
+
+    private static function getStatus(array $Status){
+      self::$Data['status'] = 
+      [ 
+        ['id'=>'1','title'=>'Active'],
+        ['id'=>'0','title'=>'Inactive'],
+        'Parameters'=>[ 'include'=> ['key'=>'id','value'=>$Status,'tag'=>'selected','offset'=>'<option'] ]
+      ];
     }
 
     static function getData(){

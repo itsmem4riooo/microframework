@@ -13,7 +13,15 @@ class UsersController{
     static function index($parameters){
 
         $listUsersParams = [
-            'Parameters' => ['include' => ['key'=>'thumb','tag'=>'style="display:none"','offset'=>'<img','value'=>[NULL]]]
+          'Parameters' => 
+            [ 
+              'include' => 
+              [
+                ['key'=>'thumb' ,'tag'=>'sources/application/views/themes/'.THEME.'/styles/images/person.png','offset'=>'src="http://localhost/microframework/','value'=>[NULL]],
+                ['key'=>'active','tag'=>' bg-danger"','offset'=>'class="circle','value'=>[0]]
+              ],
+              'change' => ['active'=>['0'=>'Inactive','1'=>'Active']],
+            ]
         ];
         
        Pager::List("users",['max_links'=>1,'link'=>BASE.'/users/','page'=>@$parameters[0]]);
@@ -24,7 +32,7 @@ class UsersController{
     static function add(){
 
         UsersModel::addUser();
-        View::setView('users/Form',UsersModel::getData()); 
+        View::setView('users/Form', UsersModel::getData()); 
 
     }
     

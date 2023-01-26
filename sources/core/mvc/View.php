@@ -100,7 +100,7 @@ class View{
                 foreach($values as $value){
                   if(((string)$Data[0] == (string)$value['key']) && in_array($Data[1],$value['value'])){
                       $offset = strpos($Content,$value['offset'])+strlen($value['offset']);
-                      $Content = substr_replace($Content, ' '.$value['tag'] , $offset , 0 ); 
+                      $Content = substr_replace($Content, $value['tag'] , $offset , 0 ); 
                   }
                 }
 
@@ -131,4 +131,8 @@ class View{
       }
     }
 
-}
+    static function getData($Key){
+      return (!empty(self::$Data[$Key])? self::$Data[$Key] : null);
+    }
+
+  }

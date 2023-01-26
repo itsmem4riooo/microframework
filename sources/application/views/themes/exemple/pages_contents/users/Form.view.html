@@ -16,16 +16,19 @@
       <div class="form-outline">
         <input type="text" name="last_name" value="{{last_name}}" class="form-control"  placeholder="Last Name"/>
       </div>
+    </div>  
+    <div class="form-outline col">
+      <input type="text" name="nickname" class="form-control" value="{{nickname}}" placeholder="Nickname"/>
     </div>
   </div>
 
   <!-- Text input -->
   <div class="row">
   <div class="form-outline mb-4 col">
-    <input type="text" name="login" class="form-control" value="{{login}}" placeholder="E-mail"/>
+    <input type="text" name="login" class="form-control" value="{{login}}" placeholder="Login"/>
   </div>
   <div class="form-outline mb-4 col">
-    <input type="text" name="nickname" class="form-control" value="{{nickname}}" placeholder="Nickname"/>
+    <input type="text" name="email" class="form-control" value="{{email}}" placeholder="E-mail"/>
   </div>
   </div>
 
@@ -42,6 +45,12 @@
   </div>
   <div class="form-outline mb-4 col">
     <input type="file" name="thumb" class="form-control" placeholder="thumbnail"/>
+  </div>
+  <div class="form-outline mb-4 col">
+    <select type="file" name="active" class="form-control">
+      <option disabled selected>Status</option>
+      {{status-<option value="#id#">#title#</option>}}
+    </select> 
   </div>
   <!-- Submit button -->
   <div class="text-end">

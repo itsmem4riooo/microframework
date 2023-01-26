@@ -63,6 +63,13 @@ trait ValidationMethods{
       unset(self::$Values[$Parameters['key']]);
     }
 
+    static function accept($Parameters){
+      if(!in_array($Parameters['value'],$Parameters['data'])){
+        self::$Message = "Value invalid on $Parameters[title]";
+        return false;
+      }
+    }
+
 }
 
 ?>
