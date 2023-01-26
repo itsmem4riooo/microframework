@@ -11,9 +11,13 @@ class UsersController{
     use \Sources\Core\Mvc\Controller;
 
     static function index($parameters){
+
+        $listUsersParams = [
+            'Parameters' => ['include' => ['key'=>'thumb','tag'=>'style="display:none"','offset'=>'<img','value'=>[NULL]]]
+        ];
         
-       Pager::List("users",['max_links'=>1,'Options'=>['Limit'=>2],'link'=>BASE.'/users/','page'=>@$parameters[0]]);
-       View::setView('users/ListUsers',['users'=>Pager::getResult(),'styles'=>['file'=>'listusers']]);
+       Pager::List("users",['max_links'=>1,'link'=>BASE.'/users/','page'=>@$parameters[0]]);
+       View::setView('users/ListUsers',['users'=>array_merge(Pager::getResult(),$listUsersParams),'styles'=>['file'=>'listusers']]);
 
     }
 

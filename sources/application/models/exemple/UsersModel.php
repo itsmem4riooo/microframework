@@ -16,6 +16,7 @@ class UsersModel{
     private static $Parameters = [
         'first_name'    => [ 'title'=>'First Name', ['required','max_length'=>25,'checkHtmlTags'] ],
         'last_name'     => [ 'title'=>'Last Name', ['max_length'=>25,'checkHtmlTags'] ],
+        'nickname'      => [ 'title'=>'Nickname', ['required']],
         'login'         => [ 'title'=>'Email', ['required','checkEmail']],
         'pass'          => [ 'title'=>'Password', ['required','confirmPassword'=>'confirm_pass','min_length'=>10,'format_password']],
         'confirm_pass'  => [ 'title'=>'Confirm Password', ['required','min_length'=>10,'delete_field']]
