@@ -6,8 +6,9 @@ class View{
 
     private static $Data = [
       'base' => BASE,
-      'b_theme'  => BASE.'/sources/application/views/themes/'.THEME.'/'
+      'b_theme'  => BASE.'/sources/application/views/themes/'.THEME.'/',
     ];
+
     private static $Content = null;
 
     static function setView(string $Page, $Data = []){
