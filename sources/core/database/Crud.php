@@ -132,7 +132,7 @@ class Crud extends Connection{
             if(!empty($Values)){
 
                 foreach($Values as $key => $value):
-                  $Query->bindValue($key , $value , (is_numeric($value) ? \PDO::PARAM_INT : \PDO::PARAM_STR));
+                  $Query->bindValue($key , $value , (is_numeric($value) ? (is_float($value) ? \PDO::PARAM_STR : \PDO::PARAM_INT) : \PDO::PARAM_STR));
                 endforeach;
 
             }
