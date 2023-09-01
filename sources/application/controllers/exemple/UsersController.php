@@ -32,22 +32,8 @@ class UsersController{
     static function add(){
 
         UsersModel::addUser();
-        View::setView('users/Form', UsersModel::getData('export')); 
+        View::setView('users/Form', UsersModel::getData()); 
 
-    }
-
-    static function edit($parameters){
-        
-        UsersModel::editUser(['user'=> @$parameters[1]]);
-        View::setView('users/Form', UsersModel::getData('export')); 
-
-    }
-
-    static function delete($parameters){
-
-        UsersModel::deleteUser(['user'=> @$parameters[1]]);
-        View::setView('users/Delete', UsersModel::getData('export'));
-        
     }
     
 }

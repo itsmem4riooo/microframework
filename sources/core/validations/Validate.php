@@ -86,7 +86,7 @@ class Validate{
           return false;
         }
       
-        if(self::{$condition}(['value'=> self::$Values[$Field],'title'=> @self::$Params[$Field]['title'],'data'=>$Data,'key'=>$Field]) === false){
+        if(self::{$condition}(['value'=> self::$Values[$Field],'title'=> self::$Params[$Field]['title'],'data'=>$Data,'key'=>$Field]) === false){
           self::$Error = self::$Message;
           return false;
         }
